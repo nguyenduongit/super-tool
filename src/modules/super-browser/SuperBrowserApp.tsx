@@ -1,11 +1,9 @@
-// src/modules/super-browser/SuperBrowserApp.tsx
-
 import React, { useState, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
 
 import "./SuperBrowserApp.css";
 
-const VotingBot: React.FC = () => {
+const AhaSlidesBot: React.FC = () => {
   const [rawPayload, setRawPayload] = useState("");
 
   const [presentationId, setPresentationId] = useState("");
@@ -85,7 +83,7 @@ const VotingBot: React.FC = () => {
 
   return (
     <div className="voting-bot-container attack-panel">
-      <h1>Super Voting Bot</h1>
+      <h1>AhaSlides Bot</h1>
       <p>
         <b>Hướng dẫn:</b> Dán <b>Request Payload</b> hoặc <b>Response</b> vào ô
         "Dữ liệu mẫu". Các thông tin sẽ được tự động điền.
@@ -180,4 +178,4 @@ const VotingBot: React.FC = () => {
   );
 };
 
-export default VotingBot;
+export default AhaSlidesBot;
