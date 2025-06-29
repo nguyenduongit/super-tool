@@ -1,19 +1,35 @@
 import React from "react";
-import { LuSparkles } from "react-icons/lu"; // Import một icon đẹp
-import "./HomePage.css"; // Import file CSS cho trang chủ
+import { Link } from "react-router-dom";
+import { ModuleMeta } from "@/routes/types";
+import "./HomePage.css";
 
-const HomePage: React.FC = () => {
+// Component giờ sẽ nhận props là danh sách các module
+interface HomePageProps {
+  modules: ModuleMeta[];
+}
+
+const HomePage: React.FC<HomePageProps> = ({ modules }) => {
   return (
-    <div className="home-page-container">
-      <LuSparkles size={64} className="home-page-icon" />
-      <h1 className="home-page-title">Chào mừng đến với Super Tool</h1>
-      <p className="home-page-subtitle">
-        Bộ công cụ tất cả trong một, được thiết kế để tăng tốc công việc của
-        bạn.
-      </p>
-      <p className="home-page-instruction">
-        ← Hãy chọn một công cụ từ thanh bên trái để bắt đầu.
-      </p>
+    <div className="home-container">
+      <div className="home-header">
+        <h1 className="home-title">Super Tool</h1>
+        <p className="home-subtitle">Bộ công cụ tất cả trong một của bạn</p>
+      </div>
+      <div className="modules-grid">
+        {modules.map((module) => (
+          <Link to={module.path} key={module.path} className="module-card">
+            <div className="module-card-icon-wrapper">
+              <module.icon size={32} className="module-card-icon" />
+            </div>
+            <div className="module-card-content">
+              <h2 className="module-card-name">{module.name}</h2>
+              <p className="module-card-description">
+                Truy cập công cụ {module.name}
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

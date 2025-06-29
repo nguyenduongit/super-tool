@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true, // <-- THÊM DÒNG NÀY
+    "module": "CommonJS",
+    "outDir": "./dist/electron",
+    "noEmit": false,
+    "isolatedModules": false,
+    "baseUrl": "."
+  },
+  "include": ["electron"]
+}

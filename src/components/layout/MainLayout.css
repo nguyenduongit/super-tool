@@ -1,16 +1,20 @@
-.main-layout {
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-  }
-  .main-content-wrapper {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-  }
-  .main-content {
-    flex-grow: 1;
-    overflow-y: auto;
-    background-color: var(--color-bg-secondary);
-  }
+/* Bỏ class .main-layout cũ và thay bằng class mới */
+.main-layout-no-sidebar {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-content-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
+}
+
+.main-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  background-color: var(--color-bg-secondary);
+}

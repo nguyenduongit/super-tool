@@ -1,18 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Sidebar from "./Sidebar";
 import Header from "./Header";
-import { ModuleMeta } from "@/routes/types";
 import "./MainLayout.css";
 
-interface MainLayoutProps {
-  modules: ModuleMeta[];
-}
-
-const MainLayout: React.FC<MainLayoutProps> = ({ modules }) => {
+// Không cần truyền `modules` vào đây nữa
+const MainLayout: React.FC = () => {
   return (
-    <div className="main-layout">
-      <Sidebar modules={modules} />
+    // Bỏ thẻ <Sidebar />
+    <div className="main-layout-no-sidebar">
       <div className="main-content-wrapper">
         <Header />
         <main className="main-content">

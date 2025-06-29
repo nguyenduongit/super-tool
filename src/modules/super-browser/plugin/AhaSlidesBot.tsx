@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { invoke } from "@tauri-apps/api/core";
+// Import API mới của chúng ta
+import { electronAPI } from "@/electronApi";
 
 import "./AhaSlidesBot.css";
 
 const AhaSlidesBot: React.FC = () => {
   const [rawPayload, setRawPayload] = useState("");
-
   const [presentationId, setPresentationId] = useState("");
   const [slideId, setSlideId] = useState("");
   const [voteOptionId, setVoteOptionId] = useState("");
@@ -17,7 +17,6 @@ const AhaSlidesBot: React.FC = () => {
   const [log, setLog] = useState("Sẵn sàng để bình chọn...");
   const [warning, setWarning] = useState("");
 
-  // Bóc JSON tự động
   useEffect(() => {
     setWarning("");
 
@@ -53,7 +52,6 @@ const AhaSlidesBot: React.FC = () => {
     }
   }, [rawPayload]);
 
-  // Bắt đầu gửi bình chọn
   const handleStartVoting = async () => {
     if (!presentationId || !slideId || !voteOptionId) {
       alert("Lỗi: Dữ liệu không đủ thông tin. Vui lòng dán payload hợp lệ.");
@@ -64,18 +62,24 @@ const AhaSlidesBot: React.FC = () => {
     setLog(`Bắt đầu gửi ${voteCount} lượt bình chọn...\n`);
 
     try {
-      const result = await invoke<string>("send_bulk_votes", {
+      const result = await electronAPI.sendBulkVotes({
         presentationId: Number(presentationId),
         slideId: Number(slideId),
         voteOptionId: Number(voteOptionId),
         count: Number(voteCount),
-        accessCode: accessCode || null,
-        voteType: voteType || null,
+        accessCode: accessCode || undefined,
+        voteType: voteType || undefined,
       });
 
       setLog(result);
-    } catch (error) {
-      setLog(`Đã xảy ra lỗi: ${error}`);
+    } catch (error: unknown) {
+      // SỬA: Dùng kiểu 'unknown' thay vì 'any'
+      // Kiểm tra kiểu của error trước khi sử dụng
+      if (error instanceof Error) {
+        setLog(`Đã xảy ra lỗi: ${error.message}`);
+      } else {
+        setLog(`Đã xảy ra lỗi không xác định: ${String(error)}`);
+      }
     }
 
     setIsLoading(false);
@@ -165,7 +169,7 @@ const AhaSlidesBot: React.FC = () => {
       <button
         className="run-button"
         onClick={handleStartVoting}
-        disabled={isLoading}
+        disabled={isLoading || !presentationId || !slideId || !voteOptionId}
       >
         {isLoading ? "Đang gửi..." : "Run"}
       </button>
