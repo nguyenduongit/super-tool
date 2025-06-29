@@ -1,0 +1,40 @@
+.simple-browser-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.browser-header {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: #222;
+  color: #fff;
+}
+
+.browser-header input {
+  flex: 1;
+  padding: 4px;
+}
+
+.browser-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.browser-content.split-view {
+  flex-direction: row;
+}
+
+.browser-pane {
+  flex: 1;
+  background: #111;
+}
+
+.bot-pane {
+  width: 400px;
+  border-left: 1px solid #333;
+  overflow-y: auto;
+  background: #1e1e1e;
+}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { invoke } from "@tauri-apps/api/core";
 
-import "./SuperBrowserApp.css";
+import "./AhaSlidesBot.css";
 
 const AhaSlidesBot: React.FC = () => {
   const [rawPayload, setRawPayload] = useState("");
