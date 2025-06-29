@@ -1,120 +1,192 @@
-.super-browser-container {
+/* src/modules/super-browser/VotingBot.css */
+
+/* Bố cục chính */
+.bot-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.panel {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background-color: var(--color-bg-primary);
-  border-radius: 8px;
-  overflow: hidden;
+  padding: 16px;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+/* Khung bên trái - Trình duyệt */
+.browser-panel {
+  flex: 1;
+  min-width: 400px;
 }
 
 .browser-controls {
   display: flex;
-  align-items: center; /* Căn giữa các item theo chiều dọc */
-  padding: 8px;
-  background-color: var(--color-bg-secondary);
-  border-bottom: 1px solid var(--color-border);
-  gap: 8px; /* Thêm khoảng cách giữa các nút */
+  gap: 8px;
+  flex-shrink: 0;
 }
 
-/* --- CSS MỚI CHO CÁC NÚT ĐIỀU HƯỚNG --- */
-.nav-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: none;
-  border: 1px solid transparent;
-  color: var(--color-text-primary);
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.nav-button:hover:not(:disabled) {
-  background-color: #333;
-}
-
-.nav-button:disabled {
-  color: #666;
-  cursor: not-allowed;
-}
-/* -------------------------------------- */
-
-.address-bar {
+.browser-controls input {
   flex-grow: 1;
+  background-color: #3c3c3c;
+  border: 1px solid #555;
+  color: #d4d4d4;
   padding: 8px 12px;
-  border: 1px solid var(--color-border);
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
   border-radius: 4px;
   font-size: 14px;
 }
+.browser-controls input:focus {
+  outline: none;
+  border-color: #007acc;
+}
 
-.go-button {
-  margin-left: 0; /* Bỏ margin cũ */
-  padding: 8px 16px;
-  border: none;
-  background-color: var(--color-accent);
+.browser-controls button {
+  background-color: #0e639c;
   color: white;
-  font-weight: bold;
+  border: none;
+  padding: 0 16px;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.2s;
 }
-.go-button:hover {
-  background-color: #535bf2;
+.browser-controls button:hover {
+  background-color: #1177bb;
 }
 
-.iframe-container {
+.browser-iframe {
   flex-grow: 1;
-  border: none;
-  background-color: #ffffff;
-  position: relative; /* Cần cho lớp phủ loading */
-}
-
-.web-iframe {
   width: 100%;
   height: 100%;
-  border: none;
+  border: 1px solid #3c3c3c;
+  border-radius: 4px;
+  background-color: white;
 }
 
-/* --- CSS MỚI CHO HIỆU ỨNG LOADING --- */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Đường phân cách */
+.panel-separator {
+  width: 4px;
+  background-color: #3c3c3c;
+  cursor: col-resize;
+  flex-shrink: 0;
 }
 
-.spinner {
-  animation: spin 1s linear infinite;
+/* Khung bên phải - Bot */
+.bot-panel {
+  flex: 1;
+  min-width: 400px;
 }
 
-.loading-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+.bot-panel h2 {
+  margin-top: 0;
+  color: #0098ff;
+  border-bottom: 1px solid #3c3c3c;
+  padding-bottom: 8px;
+}
+
+.bot-panel p {
+  font-size: 13px;
+  color: #a0a0a0;
+  margin: -8px 0 8px 0;
+}
+
+.form-group {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+  background-color: #2a2d2e;
+  border: 1px solid #3c3c3c;
+  color: #d4d4d4;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: "Menlo", "Consolas", monospace;
+  resize: vertical;
+}
+.form-group input:disabled,
+.form-group textarea:disabled {
+  opacity: 0.5;
+  background-color: #3c3c3c;
+}
+
+.run-button {
+  background-color: #2c8b2c;
   color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
-/* -------------------------------------- */
-
-/* Xóa bỏ các phần không còn sử dụng */
-.iframe-placeholder,
-.custom-controls {
-  display: none;
+.run-button:hover:not(:disabled) {
+  background-color: #38a838;
+}
+.run-button:disabled {
+  opacity: 0.6;
+  background-color: #555;
+  cursor: not-allowed;
 }
 
-/* Thêm vào cuối file SuperBrowserApp.css */
-.separator {
-  width: 1px;
-  height: 24px;
-  background-color: var(--color-border);
-  margin: 0 4px;
+.log-area {
+  flex-grow: 1;
+  background-color: #1a1a1a;
+  border: 1px solid #3c3c3c;
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.log-area h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.log-area pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 13px;
+  color: #00cc00; /* Màu xanh lá cây cho log thành công */
+  flex-grow: 1;
+  overflow-y: auto;
+}
+/* Thêm vào cuối tệp SuperBrowserApp.css */
+.warning-text {
+  color: #ffcc00; /* Màu vàng */
+  font-size: 12px;
+  margin-top: 4px;
+  background-color: rgba(255, 204, 0, 0.1);
+  border: 1px solid rgba(255, 204, 0, 0.3);
+  padding: 8px;
+  border-radius: 4px;
+}
+/* Thêm vào cuối tệp SuperBrowserApp.css */
+.form-group-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.form-group input[readOnly] {
+  background-color: #3c3c3c;
+  cursor: not-allowed;
+  opacity: 0.7;
 }

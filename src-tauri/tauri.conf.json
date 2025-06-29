@@ -33,5 +33,15 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ]
+  },
+  "plugins": {
+    "shell": {
+      "scope": [
+        {
+          "name": "process:relaunch",
+          "cmd": "relaunch"
+        }
+      ]
+    }
   }
 }

@@ -41,3 +41,9 @@
   background-color: #3a3a3a;
   border-color: #555;
 }
+/* Thêm vào cuối file Header.css */
+.header-action-button.active {
+  background-color: #007acc;
+  border-color: #007acc;
+  color: white;
+}
