@@ -5,8 +5,10 @@ import AhaSlidesBot from "./plugin/AhaSlidesBot";
 import "./index.css"; // bạn tự tạo CSS cho bố cục
 
 const SuperBrowser: React.FC = () => {
-  const [url, setUrl] = useState("https://ahaslides.com/");
-  const [currentUrl, setCurrentUrl] = useState("https://ahaslides.com/");
+  const [url, setUrl] = useState("https://audience.ahaslides.com/d7loturvdk");
+  const [currentUrl, setCurrentUrl] = useState(
+    "https://audience.ahaslides.com/d7loturvdk"
+  );
   const [showBot, setShowBot] = useState(false);
 
   const handleGo = () => {
